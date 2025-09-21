@@ -85,11 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         option.addEventListener('mouseenter', () => {
             const previewThemeValue = option.getAttribute('data-value');
             previewTheme(previewThemeValue);
+            previewHighlight(true);
         });
     });
 
     optionsContainer.addEventListener('mouseleave', () => {
         previewTheme(activeTheme);
+        previewHighlight(false);
     });
 
     window.addEventListener('click', (e) => {
@@ -234,4 +236,9 @@ function handleHighlight(event) {
         const elements = document.querySelectorAll(`[data-group~="${group.trim()}"]`);
         elements.forEach(el => el.classList.toggle('highlight', shouldAdd));
     });
+}
+
+function previewHighlight(shouldHighlight) {
+    const elements = document.querySelectorAll(`[data-group~="p2"]`);
+    elements.forEach(el => el.classList.toggle('highlight', shouldHighlight));
 }
