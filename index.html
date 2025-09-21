@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная шпаргалка по испанским временам</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="theme-select">Тема:</label>
+            <select id="theme-select">
+                <option value="system">Системная</option>
+                <option value="light">Светлая</option>
+                <option value="dark">Темная</option>
+                <option value="sakura">Sakura Pink</option>
+                <option value="mint">Minty Fresh</option>
+                <option value="lavender">Лаванда</option>
+                <option value="peach">Персик</option>
+            </select>
+        </div>
+        <div id="zoom-indicator">100%</div>
+        <button id="reset-positions-btn">Drag by title</button>
+    </div>
+
+    <div id="canvas">
+        <div class="tense-card" id="presente">
+            <h2>Presente de Indicativo</h2>
+            <p><strong>-ar:</strong> <span data-group="p1">-o</span>, <span data-group="p2">-as</span>, <span data-group="p3">-a</span>, <span data-group="p4">-amos</span>, <span data-group="p5">-áis</span>, <span data-group="p6">-an</span></p>
+            <p><strong>-er:</strong> <span data-group="p1">-o</span>, <span data-group="p2">-es</span>, <span data-group="p3">-e</span>, <span data-group="p4">-emos</span>, <span data-group="p5">-éis</span>, <span data-group="p6">-en</span></p>
+            <p><strong>-ir:</strong> <span data-group="p1">-o</span>, <span data-group="p2">-es</span>, <span data-group="p3">-e</span>, <span data-group="p4">-imos</span>, <span data-group="p5">-ís</span>, <span data-group="p6">-en</span></p>
+            <strong>Исключения (yo):</strong>
+            <ul>
+                <li data-group="ser">ser - soy</li>
+                <li data-group="ir">ir - voy</li>
+                <li data-group="dar">dar - doy</li>
+                <li data-group="estar">estar - estoy</li>
+                <li data-group="ver">ver - veo</li>
+                <li data-group="hacer">hacer - hago</li>
+                <li data-group="poner">poner - pongo</li>
+                <li data-group="salir">salir - salgo</li>
+                <li data-group="traer">traer - traigo</li>
+                <li data-group="tener">tener - tengo</li>
+                <li data-group="venir">venir - vengo</li>
+                <li data-group="saber">saber - sé</li>
+                <li data-group="oír">oír - oigo</li>
+            </ul>
+        </div>
+
+        <div class="tense-card" id="indefinido">
+            <h2>Pretérito Indefinido</h2>
+            <p><strong>-ar:</strong> <span data-group="p1">-é</span>, <span data-group="p2">-aste</span>, <span data-group="p3">-ó</span>, <span data-group="p4">-amos</span>, <span data-group="p5">-asteis</span>, <span data-group="p6">-aron</span></p>
+            <p><strong>-er/-ir:</strong> <span data-group="p1">-í</span>, <span data-group="p2">-iste</span>, <span data-group="p3">-ió</span>, <span data-group="p4">-imos</span>, <span data-group="p5">-isteis</span>, <span data-group="p6">-ieron</span></p>
+            <strong>Исключения:</strong>
+            <ul>
+                <li data-group="ser ir">ser / ir - fui</li>
+                <li data-group="dar">dar - di</li>
+                <li data-group="ver">ver - vi</li>
+                <li data-group="estar">estar - estuve</li>
+                <li data-group="tener">tener - tuve</li>
+                <li data-group="hacer">hacer - hice (hizo)</li>
+                <li data-group="poder">poder - pude</li>
+                <li data-group="poner">poner - puse</li>
+                <li data-group="saber">saber - supe</li>
+                <li data-group="querer">querer - quise</li>
+                <li data-group="venir">venir - vine</li>
+                <li data-group="decir">decir - dije</li>
+                <li data-group="traer">traer - traje</li>
+            </ul>
+        </div>
+
+        <div class="tense-card" id="imperfecto">
+            <h2>Pretérito Imperfecto</h2>
+            <p><strong>-ar:</strong> <span data-group="p1">-aba</span>, <span data-group="p2">-abas</span>, <span data-group="p3">-aba</span>, <span data-group="p4">-ábamos</span>, <span data-group="p5">-abais</span>, <span data-group="p6">-aban</span></p>
+            <p><strong>-er/-ir:</strong> <span data-group="p1">-ía</span>, <span data-group="p2">-ías</span>, <span data-group="p3">-ía</span>, <span data-group="p4">-íamos</span>, <span data-group="p5">-íais</span>, <span data-group="p6">-ían</span></p>
+            <strong>Всего 3 исключения:</strong>
+            <ul>
+                <li data-group="ser">ser - era, eras...</li>
+                <li data-group="ir">ir - iba, ibas...</li>
+                <li data-group="ver">ver - veía, veías...</li>
+            </ul>
+        </div>
+
+        <div class="tense-card" id="futuro">
+            <h2>Futuro Simple</h2>
+            <p>Окончания: <span data-group="p1">-é</span>, <span data-group="p2">-ás</span>, <span data-group="p3">-á</span>, <span data-group="p4">-emos</span>, <span data-group="p5">-éis</span>, <span data-group="p6">-án</span></p>
+            <strong>Исключения (корень):</strong>
+            <ul>
+                <li data-group="decir">decir - dir-</li>
+                <li data-group="hacer">hacer - har-</li>
+                <li data-group="haber">haber - habr-</li>
+                <li data-group="poder">poder - podr-</li>
+                <li data-group="poner">poner - pondr-</li>
+                <li data-group="querer">querer - querr-</li>
+                <li data-group="saber">saber - sabr-</li>
+                <li data-group="salir">salir - saldr-</li>
+                <li data-group="tener">tener - tendr-</li>
+                <li data-group="venir">venir - vendr-</li>
+            </ul>
+        </div>
+
+        <div class="tense-card" id="condicional">
+            <h2>Condicional Simple</h2>
+            <p>Окончания: <span data-group="p1">-ía</span>, <span data-group="p2">-ías</span>, <span data-group="p3">-ía</span>, <span data-group="p4">-íamos</span>, <span data-group="p5">-íais</span>, <span data-group="p6">-ían</span></p>
+            <strong>Исключения (корень):</strong>
+            <p>Те же, что и в Futuro.</p>
+        </div>
+
+        <div class="tense-card" id="imperativo">
+            <h2>Imperativo</h2>
+            <p><strong>Afirmativo</strong></p>
+            <table>
+                <tr><th>Лицо</th><th>-ar</th><th>-er</th><th>-ir</th></tr>
+                <tr><td>tú</td><td data-group="p2">-a</td><td data-group="p2">-e</td><td data-group="p2">-e</td></tr>
+                <tr><td>usted</td><td data-group="p3">-e</td><td data-group="p3">-a</td><td data-group="p3">-a</td></tr>
+                <tr><td>nosotros</td><td data-group="p4">-emos</td><td data-group="p4">-amos</td><td data-group="p4">-amos</td></tr>
+                <tr><td>vosotros</td><td data-group="p5">-ad</td><td data-group="p5">-ed</td><td data-group="p5">-id</td></tr>
+                <tr><td>ustedes</td><td data-group="p6">-en</td><td data-group="p6">-an</td><td data-group="p6">-an</td></tr>
+            </table>
+            <p><strong>Negativo (No + Subj.)</strong></p>
+            <table>
+                <tr><th>Лицо</th><th>-ar</th><th>-er</th><th>-ir</th></tr>
+                <tr><td>tú</td><td data-group="p2">-es</td><td data-group="p2">-as</td><td data-group="p2">-as</td></tr>
+                <tr><td>usted</td><td data-group="p3">-e</td><td data-group="p3">-a</td><td data-group="p3">-a</td></tr>
+                <tr><td>nosotros</td><td data-group="p4">-emos</td><td data-group="p4">-amos</td><td data-group="p4">-amos</td></tr>
+                <tr><td>vosotros</td><td data-group="p5">-éis</td><td data-group="p5">-áis</td><td data-group="p5">-áis</td></tr>
+                <tr><td>ustedes</td><td data-group="p6">-en</td><td data-group="p6">-an</td><td data-group="p6">-an</td></tr>
+            </table>
+            <strong>Irregulares (tú, afirmativo):</strong>
+            <ul>
+                <li data-group="decir">di (decir)</li>
+                <li data-group="hacer">haz (hacer)</li>
+                <li data-group="ir">ve (ir)</li>
+                <li data-group="poner">pon (poner)</li>
+                <li data-group="salir">sal (salir)</li>
+                <li data-group="ser">sé (ser)</li>
+                <li data-group="tener">ten (tener)</li>
+                <li data-group="venir">ven (venir)</li>
+            </ul>
+        </div>
+
+        <div class="tense-card" id="perfecto">
+            <h2>Pretérito Perfecto</h2>
+            <p><strong>Haber:</strong> <span data-group="p1">he</span>, <span data-group="p2">has</span>, <span data-group="p3">ha</span>, <span data-group="p4">hemos</span>, <span data-group="p5">habéis</span>, <span data-group="p6">han</span></p>
+            <p>+ Participio (-ado / -ido)</p>
+            <strong>Неправильные причастия:</strong>
+            <ul>
+                <li data-group="abrir">abrir - abierto</li>
+                <li data-group="cubrir">cubrir - cubierto</li>
+                <li data-group="decir">decir - dicho</li>
+                <li data-group="escribir">escribir - escrito</li>
+                <li data-group="hacer">hacer - hecho</li>
+                <li data-group="morir">morir - muerto</li>
+                <li data-group="poner">poner - puesto</li>
+                <li data-group="romper">romper - roto</li>
+                <li data-group="ver">ver - visto</li>
+                <li data-group="volver">volver - vuelto</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
