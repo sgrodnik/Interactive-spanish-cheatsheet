@@ -151,6 +151,10 @@ zoomIndicator.addEventListener('mouseout', () => { updateZoomIndicator(); });
 // --- INTERACTION LOGIC (Drag, Pan, Zoom, Highlight) ---
 
 window.addEventListener('wheel', event => {
+    // If the wheel event is inside the theme selector's options, let it scroll normally.
+    if (event.target.closest('.select-items')) {
+        return;
+    }
     event.preventDefault();
     const oldScale = transformState.scale;
     const zoomFactor = 1.05;
