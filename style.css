@@ -199,8 +199,8 @@ body.is-panning { cursor: grabbing !important; }
 #perfecto { top: 20px; left: 560px; }
 #presente { top: 20px; left: 830px; }
 #futuro { top: 20px; left: 1100px; }
-#condicional { top: 450px; left: 20px; }
-#imperativo { top: 450px; left: 290px; }
+#imperativo { top: 350px; left: 20px; }
+#condicional { top: 530px; left: 290px; }
 
 /* --- Custom Select --- */
 .custom-select-wrapper {

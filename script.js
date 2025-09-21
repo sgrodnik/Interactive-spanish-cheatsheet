@@ -39,7 +39,7 @@ function applyCanvasTransform() {
 function updateZoomIndicator() {
     const zoomLevel = Math.round(transformState.scale * 100);
     if (zoomLevel === 100) {
-        zoomIndicator.innerText = 'Scroll to zoom?';
+        zoomIndicator.innerText = 'Скроль для зума';
     } else {
         zoomIndicator.innerText = `${zoomLevel}%`;
     }
@@ -52,11 +52,9 @@ function saveTransformState() {
 function updateResetButtonState() {
     const positions = JSON.parse(localStorage.getItem(cardPositionsKey));
     if (!positions || Object.keys(positions).length === 0) {
-        resetPositionsBtn.innerText = 'Drag by title';
-        resetPositionsBtn.disabled = true;
+        resetPositionsBtn.innerText = 'Тащи за заголовок';
     } else {
         resetPositionsBtn.innerText = 'Сбросить позиции';
-        resetPositionsBtn.disabled = false;
     }
 }
 
