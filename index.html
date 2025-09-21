@@ -10,16 +10,21 @@
 
     <div class="controls">
         <div class="control-group">
-            <label for="theme-select">Тема:</label>
-            <select id="theme-select">
-                <option value="system">Системная</option>
-                <option value="light">Светлая</option>
-                <option value="dark">Темная</option>
-                <option value="sakura">Sakura Pink</option>
-                <option value="mint">Minty Fresh</option>
-                <option value="lavender">Лаванда</option>
-                <option value="peach">Персик</option>
-            </select>
+            <label>Тема:</label>
+            <div class="custom-select-wrapper">
+                <div id="custom-theme-select" class="custom-select">
+                    <div class="select-selected"></div>
+                    <div class="select-items select-hide">
+                        <div class="select-item" data-value="system">Системная</div>
+                        <div class="select-item" data-value="light">Светлая</div>
+                        <div class="select-item" data-value="dark">Темная</div>
+                        <div class="select-item" data-value="sakura">Sakura Pink</div>
+                        <div class="select-item" data-value="mint">Minty Fresh</div>
+                        <div class="select-item" data-value="lavender">Лаванда</div>
+                        <div class="select-item" data-value="peach">Персик</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="zoom-indicator">100%</div>
         <button id="reset-positions-btn">Drag by title</button>

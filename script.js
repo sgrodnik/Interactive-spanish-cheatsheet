@@ -5,15 +5,28 @@ const themeKey = 'spanishCheatsheetTheme';
 const canvas = document.getElementById('canvas');
 const zoomIndicator = document.getElementById('zoom-indicator');
 const resetPositionsBtn = document.getElementById('reset-positions-btn');
-const themeSelect = document.getElementById('theme-select');
 
 // --- THEME LOGIC ---
+const customSelect = document.getElementById('custom-theme-select');
+const selectedOption = customSelect.querySelector('.select-selected');
+const optionsContainer = customSelect.querySelector('.select-items');
+const options = customSelect.querySelectorAll('.select-item');
+let activeTheme = 'system'; // Default, will be updated on load
+
 function applyTheme(theme) {
     document.body.className = `theme-${theme}`;
     localStorage.setItem(themeKey, theme);
-    themeSelect.value = theme;
+    activeTheme = theme;
+
+    const selectedItem = Array.from(options).find(opt => opt.dataset.value === theme);
+    if (selectedItem) {
+        selectedOption.textContent = selectedItem.textContent;
+    }
 }
-themeSelect.addEventListener('change', () => applyTheme(themeSelect.value));
+
+function previewTheme(theme) {
+    document.body.className = `theme-${theme}`;
+}
 
 // --- UNIFIED TRANSFORM STATE ---
 let transformState = { scale: 1, x: 0, y: 0 };
@@ -47,13 +60,46 @@ function updateResetButtonState() {
     }
 }
 
-// --- PAGE LOAD & RESET BUTTONS ---
+// --- PAGE LOAD & INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Load theme first
+    // 1. Load and apply the saved theme
     const savedTheme = localStorage.getItem(themeKey) || 'system';
     applyTheme(savedTheme);
 
-    // Load card positions
+    // 2. Initialize Custom Select Dropdown
+    selectedOption.addEventListener('click', (e) => {
+        e.stopPropagation();
+        optionsContainer.classList.toggle('select-hide');
+        selectedOption.classList.toggle('select-arrow-active');
+    });
+
+    options.forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const newTheme = option.getAttribute('data-value');
+            applyTheme(newTheme);
+            optionsContainer.classList.add('select-hide');
+            selectedOption.classList.remove('select-arrow-active');
+        });
+
+        option.addEventListener('mouseenter', () => {
+            const previewThemeValue = option.getAttribute('data-value');
+            previewTheme(previewThemeValue);
+        });
+    });
+
+    optionsContainer.addEventListener('mouseleave', () => {
+        previewTheme(activeTheme);
+    });
+
+    window.addEventListener('click', (e) => {
+        if (!customSelect.contains(e.target)) {
+            optionsContainer.classList.add('select-hide');
+            selectedOption.classList.remove('select-arrow-active');
+        }
+    });
+
+    // 3. Load saved positions for cards and canvas
     const savedCardPositions = JSON.parse(localStorage.getItem(cardPositionsKey));
     if (savedCardPositions) {
         for (const id in savedCardPositions) {
@@ -66,19 +112,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    // Load canvas transform
     const savedTransform = JSON.parse(localStorage.getItem(canvasTransformKey));
     if (savedTransform) { transformState = savedTransform; }
     
     applyCanvasTransform();
     updateResetButtonState();
 
-    // Reveal the canvas after a short delay to ensure transition works
+    // 4. Reveal the canvas
     setTimeout(() => {
         document.body.classList.remove('is-loading');
     }, 50);
 });
 
+// --- OTHER CONTROLS ---
 resetPositionsBtn.addEventListener('click', () => {
     localStorage.removeItem(cardPositionsKey);
     const cards = document.querySelectorAll('.tense-card');

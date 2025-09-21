@@ -201,3 +201,79 @@ body.is-panning { cursor: grabbing !important; }
 #futuro { top: 20px; left: 1100px; }
 #condicional { top: 450px; left: 20px; }
 #imperativo { top: 450px; left: 290px; }
+
+/* --- Custom Select --- */
+.custom-select-wrapper {
+    position: relative;
+    width: 130px; /* Adjust width as needed */
+}
+
+.custom-select {
+    position: relative;
+}
+
+.select-selected {
+    background-color: var(--color-control-bg);
+    color: var(--color-text);
+    padding: 8px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    cursor: pointer !important;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.select-selected:hover {
+    background-color: var(--color-control-bg-hover);
+    border-color: var(--color-control-border);
+}
+
+/* Arrow for the select box */
+.select-selected::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-color: var(--color-text) transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active) */
+.select-selected.select-arrow-active::after {
+    border-color: transparent transparent var(--color-text) transparent;
+    top: 40%;
+}
+
+.select-items {
+    position: absolute;
+    background-color: var(--color-card-bg);
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.select-hide {
+    display: none;
+}
+
+.select-item {
+    color: var(--color-text);
+    padding: 8px 12px;
+    cursor: pointer !important;
+    user-select: none;
+}
+
+.select-item:hover, .same-as-selected {
+    background-color: var(--color-control-bg-hover);
+}
