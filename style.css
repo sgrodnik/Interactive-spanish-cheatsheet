@@ -400,6 +400,7 @@ body.is-panning { cursor: grabbing !important; }
 #futuro { top: 20px; left: 1100px; }
 #imperativo { top: 350px; left: 20px; }
 #condicional { top: 530px; left: 290px; }
+#articulos-pronombres { top: 500px; left: 1100px; }
 
 /* --- Custom Select --- */
 .custom-select-wrapper {
