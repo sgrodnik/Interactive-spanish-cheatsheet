@@ -386,6 +386,9 @@ body.is-panning { cursor: grabbing !important; }
 .tense-card table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
 .tense-card th, .tense-card td { border: 1px solid var(--color-border); padding: 4px; text-align: center; }
 
+#orden { width: 450px; }
+#orden table th, #orden table td { width: 25%; font-size: 0.8em; padding: 2px; }
+
 .highlight {
     background-color: var(--color-highlight);
     color: var(--color-highlight-text);
